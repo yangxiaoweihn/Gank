@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#1ca184</color>
+    <color name="colorPrimaryDark">#1ca184</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="app_bg">#f0f0f0</color>
+    <color name="white">#fff</color>
+
+    <color name="text_color_date">#9b9b9b</color>
+    <color name="text_color_primary">#4a4a4a</color>
+
+    <color name="item_color_normal">@color/white</color>
+    <color name="item_color_pressed">@color/app_bg</color>
+</resources>

@@ -1,0 +1,60 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.3"
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 23
+        versionCode 4
+        versionName "2.1"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:support-v4:23.4.0'
+    compile 'com.android.support:recyclerview-v7:23.4.0'
+//    compile 'com.android.support:support-annotations:23.4.0'
+}
+
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'recyclerview-adapter-hf'
+
+    publishedGroupId = "ws.dyt.view"
+    libraryName = 'RecyclerviewAdapterHF'
+    artifact = 'recyclerview-adapter-hf'
+
+    libraryDescription = "An adapter for RecyclerView widget, support single type and multi types, support add head views and footer views, support LinearLayoutManager and GridLayoutManager and StaggeredGridLayoutManager."
+    siteUrl = "https://github.com/yangxiaoweihn/RecyclerViewAdapter"
+    gitUrl = "https://github.com/yangxiaoweihn/RecyclerViewAdapter.git"
+
+    libraryVersion = "${android.defaultConfig.versionName}"
+    developerId = 'yangxiaoweihn'
+    developerName = 'yangxiaowei'
+    developerEmail = 'hn_yangxiaowei@163.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+
+}
+
+//apply from: "https://raw.githubusercontent.com/yangxiaoweihn/MavenPushScript/master/scrip/install.gradle"
+//apply from: "https://raw.githubusercontent.com/yangxiaoweihn/MavenPushScript/master/scrip/bintray.gradle"
