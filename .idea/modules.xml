@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Gank.iml" filepath="$PROJECT_DIR$/Gank.iml" />
       <module fileurl="file://$PROJECT_DIR$/gank/gank.iml" filepath="$PROJECT_DIR$/gank/gank.iml" />
+      <module fileurl="file://$PROJECT_DIR$/lib/lib.iml" filepath="$PROJECT_DIR$/lib/lib.iml" />
       <module fileurl="file://$PROJECT_DIR$/page-list-wrapper/page-list-wrapper.iml" filepath="$PROJECT_DIR$/page-list-wrapper/page-list-wrapper.iml" />
       <module fileurl="file://$PROJECT_DIR$/recyclerview-adapter-hf/recyclerview-adapter-hf.iml" filepath="$PROJECT_DIR$/recyclerview-adapter-hf/recyclerview-adapter-hf.iml" />
     </modules>

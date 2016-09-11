@@ -20,7 +20,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ws.dyt.gank.R;
+import ws.dyt.gank.ui.activity.base.SingleFragmentActivity;
 import ws.dyt.gank.ui.fragment.base.GankBaseFragment;
+import ws.dyt.gank.ui.fragment.github.GithubAuthFragment;
 
 /**
  * 干货组合界面
@@ -56,7 +58,7 @@ public class GankMainFragment extends GankBaseFragment {
 
 //        String[] gankCategory = getResources().getStringArray(R.array.title_category_gank);
         String[] gankCategory = {"Android", "iOS", "前端", "休息视频", "拓展资源"};
-        String[] gankCategoryTitle = {"Android", "iOS", "前端", "视频", "拓展"};
+        String[] gankCategoryTitle = {"安卓", "iOS", "前端", "视频", "拓展"};
 
         List<GankCategoryListFragment> fragments = new ArrayList<>();
         for (String e:gankCategory) {
@@ -85,6 +87,9 @@ public class GankMainFragment extends GankBaseFragment {
 
     }
 
+    /**
+     * 适配器
+     */
     private class GankCategoryPagerAdapter extends FragmentPagerAdapter{
         private List<GankCategoryListFragment> fragments;
         private String[] titles;
@@ -111,17 +116,4 @@ public class GankMainFragment extends GankBaseFragment {
         }
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        menu.clear();
-        inflater.inflate(R.menu.menu_add, menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_add) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }

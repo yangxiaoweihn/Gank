@@ -22,6 +22,7 @@ import ws.dyt.gank.entity.GankInfo;
 import ws.dyt.gank.entity.Response;
 import ws.dyt.gank.net.RestApi;
 import ws.dyt.gank.ui.activity.base.SingleFragmentActivity;
+import ws.dyt.gank.ui.activity.base.SingleFragmentWithToolbarActivity;
 import ws.dyt.gank.ui.fragment.base.GankBasePageListFragment;
 import ws.dyt.gank.ui.fragment.base.WebpageBaseFragment;
 import ws.dyt.gank.utils.DipUtil;
@@ -88,7 +89,7 @@ public class GankCategoryListFragment extends GankBasePageListFragment<GankInfo,
             @Override
             public void onItemClick(View itemView, int position) {
                 GankInfo info = adapter.getItem(position);
-                SingleFragmentActivity.to(getContext(), WebpageBaseFragment.class, WebpageBaseFragment.generateArgs(info.desc, info.url));
+                SingleFragmentActivity.to(getContext(), SingleFragmentWithToolbarActivity.class, WebpageBaseFragment.class, WebpageBaseFragment.generateArgs(info.desc, info.url));
             }
         });
     }

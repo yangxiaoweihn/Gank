@@ -5,12 +5,11 @@ import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.HttpAuthHandler;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -22,7 +21,12 @@ import com.orhanobut.logger.Logger;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import retrofit.Callback;
+import retrofit.Response;
 import ws.dyt.gank.R;
+import ws.dyt.gank.entity.GithubToken;
+import ws.dyt.gank.entity.GithubUserInfo;
+import ws.dyt.gank.net.RestApi;
 
 /**
  */
@@ -38,7 +42,7 @@ public class WebpageBaseFragment extends GankBaseFragment {
         // Required empty public constructor
     }
 
-    private static final String PARAM_URL = "param_url";
+    protected static final String PARAM_URL = "param_url";
 
     public static Bundle generateArgs(String title, String url) {
         Bundle args = newArgument(title);
@@ -176,5 +180,21 @@ public class WebpageBaseFragment extends GankBaseFragment {
             view.clearCache(true);
 
         }
+
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            Logger.e("Gank-GGGGGG", "url: " + url);
+            return WebpageBaseFragment.this.shouldOverrideUrlLoading(view, url);
+        }
+
     };
+    public boolean shouldOverrideUrlLoading(WebView view, String url) {
+        if (!TextUtils.isEmpty(url)) {
+            view.loadUrl(url);
+        }
+        return true;
+    }
+
+
 }

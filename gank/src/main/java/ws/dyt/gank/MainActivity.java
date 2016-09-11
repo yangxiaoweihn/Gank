@@ -9,8 +9,13 @@ public class MainActivity extends SingleFragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setIntent(generateIntent(MainFragment.class, null));
+        setIntent(generateIntent(false, MainFragment.class, null));
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    public void setTitle(CharSequence title) {
+        super.setTitle(title);
+        ((MainFragment) getFragment()).setTitle(title);
     }
 }

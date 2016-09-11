@@ -13,7 +13,9 @@ import android.widget.ImageView;
 import com.orhanobut.logger.Logger;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import ws.dyt.gank.R;
 import ws.dyt.gank.entity.CourseResult;
@@ -23,7 +25,9 @@ import ws.dyt.gank.entity.GankInfo;
 import ws.dyt.gank.entity.Response;
 import ws.dyt.gank.net.RestApi;
 import ws.dyt.gank.ui.activity.base.SingleFragmentActivity;
+import ws.dyt.gank.ui.activity.base.SingleFragmentWithToolbarActivity;
 import ws.dyt.gank.ui.fragment.base.WebpageBaseFragment;
+import ws.dyt.gank.ui.fragment.github.GithubAuthFragment;
 import ws.dyt.gank.utils.ImageLoader;
 import retrofit.Callback;
 import ws.dyt.pagelist.config.EmptyStatusViewWrapper;
@@ -58,8 +62,7 @@ public class DailyFragment extends BasePageListFragment<GankInfo, DailyAdapterIn
     @Override
     public void onConfigEmptyStatusViewInfo(EmptyStatusViewWrapper wrapper) {
         super.onConfigEmptyStatusViewInfo(wrapper);
-        wrapper.IsShowEmptyViewBeforeInitLoading = true;
-        wrapper.DrawableResOfInitLoading = R.mipmap.ic_launcher;
+        wrapper.IsShowEmptyViewBeforeInitLoading = false;
     }
 
     @Override
@@ -126,7 +129,9 @@ public class DailyFragment extends BasePageListFragment<GankInfo, DailyAdapterIn
             @Override
             public void onItemClick(View itemView, int position) {
                 GankInfo info = adapter.getItem(position).data;
-                SingleFragmentActivity.to(getContext(), WebpageBaseFragment.class, WebpageBaseFragment.generateArgs(info.desc, info.url));
+
+                SingleFragmentActivity.to(getContext(), SingleFragmentWithToolbarActivity.class, WebpageBaseFragment.class, WebpageBaseFragment.generateArgs(info.desc, info.url));
+
             }
         });
 
@@ -144,7 +149,8 @@ public class DailyFragment extends BasePageListFragment<GankInfo, DailyAdapterIn
                 @Override
                 public void onClick(View view) {
                     GankInfo info = e;
-                    SingleFragmentActivity.to(getContext(), WebpageBaseFragment.class, WebpageBaseFragment.generateArgs(info.desc, info.url));
+                    SingleFragmentActivity.to(getContext(), SingleFragmentWithToolbarActivity.class, WebpageBaseFragment.class, WebpageBaseFragment.generateArgs(info.desc, info.url));
+
                 }
             });
         }
@@ -204,10 +210,12 @@ public class DailyFragment extends BasePageListFragment<GankInfo, DailyAdapterIn
         if (pageIndex == 0) {
             this.pageSize = 1;
         }
-        RestApi.getInstance().getDailyGankInfo(2015, 8, 7, new Callback<Response<DailyResponseInfo>>() {
+
+        Calendar calendar = Calendar.getInstance(Locale.getDefault());
+
+        RestApi.getInstance().getDailyGankInfo(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH) + 1, calendar.get(Calendar.DAY_OF_MONTH), new Callback<Response<DailyResponseInfo>>() {
             @Override
             public void onResponse(retrofit.Response<Response<DailyResponseInfo>> response) {
-                Logger.e("DEBUG", "--onResponse");
 
                 if (null == response || null == response.body() || null == response.body().results) {
                     setOnFailurePath();
@@ -229,7 +237,6 @@ public class DailyFragment extends BasePageListFragment<GankInfo, DailyAdapterIn
 
             @Override
             public void onFailure(Throwable t) {
-                Logger.e("DEBUG", "--onFailure");
                 setOnFailurePath();
             }
         });

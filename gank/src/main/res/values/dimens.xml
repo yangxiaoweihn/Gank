@@ -9,4 +9,6 @@
     <!--<dimen name="font_larger"></dimen>-->
     <dimen name="font_normal">15sp</dimen>
     <dimen name="font_small">12sp</dimen>
+
+    <dimen name="item_divider">0.5dp</dimen>
 </resources>

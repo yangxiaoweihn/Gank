@@ -8,11 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
 
         <item name="android:actionMenuTextColor">@color/white</item>
+        <item name="android:windowBackground">@color/app_bg</item>
+        <item name="android:textCursorDrawable">@color/colorPrimary</item>
     </style>
 
-
     <style name="item_commnon">
-        <item name="android:background">@drawable/selector_item_category</item>
+        <item name="android:background">@drawable/selector_item_common</item>
     </style>
 
 
@@ -24,5 +25,18 @@
             @android:drawable/progress_indeterminate_horizontal
         </item>
         <item name="android:progressDrawable">@drawable/progressbar_h</item>
+    </style>
+
+    <style name="LoadingDialog" parent="@android:style/Widget.Holo.ProgressBar.Large">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowContentOverlay">@null</item>
     </style>
 </resources>

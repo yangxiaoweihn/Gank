@@ -17,6 +17,9 @@ public class DailyResponseInfo {
     @SerializedName("iOS")
     public ArrayList<GankInfo> ios;
 
+    @SerializedName("前端")
+    public ArrayList<GankInfo> web;
+
     @SerializedName("瞎推荐")
     public ArrayList<GankInfo> recommend;
 
@@ -35,7 +38,7 @@ public class DailyResponseInfo {
     }
 
     public List<GankInfo> get() {
-        List[] gankInfos = {/*meiZhi, */android, ios, recommend, extendRes, restVideo};
+        List[] gankInfos = {/*meiZhi, */android, ios, web, recommend, extendRes, restVideo};
         List<GankInfo> all = new ArrayList<>();
         for (List e:gankInfos) {
             if (null == e || e.isEmpty()) {

@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:background="@color/app_bg"
     android:orientation="vertical"
-    tools:context="dyt.ws.gank.ui.fragment.GankMainFragment">
+    tools:context="ws.dyt.gank.ui.fragment.GankMainFragment">
+
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tab_layout"
@@ -20,5 +21,6 @@
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 </LinearLayout>

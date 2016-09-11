@@ -1,1 +1,1 @@
-include ':gank', ':page-list-wrapper', ':recyclerview-adapter-hf'
+include ':gank', ':page-list-wrapper', ':recyclerview-adapter-hf', ':lib'

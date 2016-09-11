@@ -4,5 +4,18 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="title_gank_commit">提交干货</string>
+    <string name="title_category">干货类型选择</string>
+
+    <string name="hint_gank_commit_category">选择干货类型</string>
+    <string name="hint_gank_commit_url">想要提交的网页地址</string>
+    <string name="hint_gank_commit_desc">对干货内容的描述</string>
+
+    <string name="menu_commit">提交</string>
+    <string name="menu_add">添加</string>
+
+    <string name="err_gank_category">请选择干货类型</string>
+    <string name="err_gank_url">请填写正确的干货地址</string>
+    <string name="err_gank_desc">请填写干货内容描述</string>
 
 </resources>

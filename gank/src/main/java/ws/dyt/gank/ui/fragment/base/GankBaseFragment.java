@@ -13,7 +13,7 @@ import ws.dyt.gank.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class GankBaseFragment extends Fragment {
+public class GankBaseFragment extends Fragment implements IRefresh{
 
 
     public static final String PARAM_TITLE = "param_title";
@@ -27,12 +27,9 @@ public class GankBaseFragment extends Fragment {
         return args;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        TextView textView = new TextView(getActivity());
-        textView.setText(R.string.hello_blank_fragment);
-        return textView;
-    }
 
+    @Override
+    public void refresh() {
+
+    }
 }

@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ws.dyt.gank.R;
+import ws.dyt.gank.ui.fragment.base.IRefresh;
 
 /**
  * 主界面
@@ -29,6 +31,8 @@ public class MainFragment extends Fragment {
     ViewPager mViewPager;
     @BindView(R.id.tab_layout)
     TabLayout mTabLayout;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
 
     public MainFragment() {
         // Required empty public constructor
@@ -43,28 +47,57 @@ public class MainFragment extends Fragment {
         return view;
     }
 
+    public void setTitle(CharSequence title) {
+        mToolbar.setTitle(title);
+    }
+
     private void init() {
         mTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
         mTabLayout.setupWithViewPager(mViewPager);
 
 
-        String[] gankCategory = {"每日", "福利", "干货", "我的"};
+        final String[] gankCategory = {"每日", "福利", "干货", "我的"};
 
         List<Fragment> fragments = new ArrayList<>();
 
         fragments.add(DailyFragment.newInstance());
         fragments.add(GankCategoryMeiZhiListFragment.newInstance(gankCategory[1]));
         fragments.add(GankMainFragment.newInstance());
-        fragments.add(GankMainFragment.newInstance());
+        fragments.add(UserCenterFragment.newInstance());
 
 
-        MainPagerAdapter adapter = new MainPagerAdapter(getFragmentManager(), fragments, gankCategory);
+        final MainPagerAdapter adapter = new MainPagerAdapter(getFragmentManager(), fragments, gankCategory);
 
         mViewPager.setOffscreenPageLimit(fragments.size());
         mViewPager.setAdapter(adapter);
 
 
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                //只针对我的页面
+                if (position == 3) {
+                    Fragment fragment = adapter.getItem(position);
+                    if (null != fragment && fragment instanceof IRefresh) {
+                        ((IRefresh) fragment).refresh();
+                    }
+                }
+
+                getActivity().setTitle(adapter.getPageTitle(position));
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        getActivity().setTitle(adapter.getPageTitle(0));
     }
 
     private class MainPagerAdapter extends FragmentPagerAdapter {
