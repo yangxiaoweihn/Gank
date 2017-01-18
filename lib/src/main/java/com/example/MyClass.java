@@ -1,13 +1,25 @@
 package com.example;
 
+import javax.net.ssl.SSLContext;
+
 public class MyClass {
 
     public static void main(String[] args) {
         System.out.println("------");
 
-        sortWithBubble(get());
-        sortWithInsert(get());
-        sortWithSelect(get());
+//        sortWithBubble(get());
+//        sortWithInsert(get());
+//        sortWithSelect(get());
+        int[] arr = get();
+        sortWithQuick(arr, 0, arr.length - 1);
+
+        System.out.println(((0xf0ff & 0x000f) | 0x00f0)+": "+Integer.toHexString((0xf0ff & 0x000f) | 0x00f0));
+
+        System.out.println((0xff << 1)+" : "+Integer.toHexString(0xff << 1));
+        int result = (((0xf0ff & 0x000f) | 0x00f0) << 1) / (4 >> 1);
+        System.out.println("_____ "+result);
+
+        System.out.println("_____ "+(10 / 2)+" , "+(10 >> 1));
     }
     private static int[] get() {
         return new int[]{3, 8, 1, 0, 6, 4, 9, 5, 2};
@@ -132,11 +144,69 @@ public class MyClass {
     }
 
     /**
-     * 快排
+     * 以基准元素为准进行排序,结果就是基准元素左面都比基准元素小,右面都比基准元素大
+     *
+     * @param arr
+     * @param low
+     * @param high
+     * @return 基准元素位置
+     */
+    public static int find(int[] arr, int low, int high) {
+        int pivot = arr[low];
+        //3, 8, 1, 0, 6, 4, 9, 5, 2
+        while (low < high) {
+            while (low < high && arr[high] >= pivot) {
+                high -= 1;
+            }
+            arr[low] = arr[high];
+            StringBuffer sb = new StringBuffer("-");
+            for (int i = 0; i < arr.length; i++) {
+                sb.append(" "+arr[i]);
+            }
+            System.err.println(sb);
+
+            while (low < high && arr[low] <= pivot) {
+                low += 1;
+            }
+            arr[high] = arr[low];
+
+            sb.setLength(0);
+            sb.append("+");
+            for (int i = 0; i < arr.length; i++) {
+                sb.append(" "+arr[i]);
+            }
+            System.err.println(sb);
+        }
+        arr[low] = pivot;
+        print(arr, false);
+        return low;
+    }
+    /**
+     * 快排(对冒泡的改进)
+     *
+     * 思路:
+     * 从数列中挑出一个基准pivot元素,所有比基准元素小的放在基准元素前面,比基准元素大的放在基准元素后面
+     * 分割之后基准元素就处于数列的中间位置,然后对左右两个子数列递归上面的流程
      *
      */
-    public static void sortWithQuick(int[] arr) {
+    public static void sortWithQuick(int[] arr, int low, int high) {
+//        System.out.println("sortWithQuick()");
 
+        if (low < high) {
+            int index = find(arr, low, high);
+//            System.out.println("sortWithQuick(): "+index);
+            sortWithQuick(arr, low, index - 1);
+//            sortWithQuick(arr, index + 1, high);
+//        print(arr, true);
+        }
+
+
+    }
+
+    static void swap(int[] arr, int l, int r){
+        int e = arr[l];
+        arr[l] = arr[r];
+        arr[r] = e;
     }
 
     static void print(int[] arr, boolean d) {
@@ -147,7 +217,12 @@ public class MyClass {
                 System.err.print(arr[i]+" ");
             }
         }
-        System.out.println();
+        if (d) {
+            System.out.println();
+        }else {
+            System.err.println();
+
+        }
     }
 }
 

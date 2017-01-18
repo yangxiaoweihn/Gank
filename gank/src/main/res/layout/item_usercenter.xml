@@ -5,8 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
-
     <TextView
+        android:drawableRight="@drawable/ic_arrow_right_18dp"
+        tools:drawableTint="@color/colorPrimary"
         android:id="@+id/tv_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,5 +19,4 @@
         android:textColor="@color/text_color_primary"
         android:textSize="@dimen/font_normal"
         tools:text="xxxxxxxxx" />
-
 </LinearLayout>

@@ -11,6 +11,7 @@ public class MainActivity extends SingleFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setIntent(generateIntent(false, MainFragment.class, null));
         super.onCreate(savedInstanceState);
+//        setContentView(R.layout.tt);
     }
 
     @Override

@@ -2,8 +2,12 @@ package ws.dyt.gank.ui.fragment;
 
 
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.ColorRes;
+import android.support.annotation.DrawableRes;
 import android.support.v4.app.Fragment;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -115,6 +119,7 @@ public class UserCenterFragment extends GankBaseFragment {
             public void convert(BaseViewHolder holder, int position) {
                 holder.setText(R.id.tv_category, getItem(position).data);
             }
+
         };
     }
 
